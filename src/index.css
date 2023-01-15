@@ -28,7 +28,6 @@ p, h1, h2, h3, h4, h5, h6 {
 :root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #1d1d1d;
 
   line-height: 1.5;
   font-synthesis: none;

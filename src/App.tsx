@@ -1,22 +1,32 @@
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
 import {
     Environment,
-    OrbitControls,
-    PerspectiveCamera,
+    PerspectiveCamera, Scroll,
     ScrollControls,
-    SpotLight,
-    Stage,
     useScroll
 } from "@react-three/drei";
 import {MutableRefObject, useRef} from "react";
 import {Smartphone} from "./components/Smartphone";
+import {Box, Heading, Text} from "@chakra-ui/react";
+import { motion } from 'framer-motion'
 
 function App() {
+    // const props = useSpring({
+    //     from: { opacity: 0, y: 100 },
+    //     to: { opacity: 1, y: 0 },
+    //     delay: 750,
+    // })
 
-  return (
+    return (
     <Canvas shadows>
         <ScrollControls pages={5} >
             <Composition />
+            <Scroll html>
+                <Box w={"100vw"} h={"100vh"} display={"flex"} flexDirection={"column"} alignItems={"center"}>
+                    <Heading as={motion.h1} marginY={"30"} fontSize={"xxx-large"} fontWeight={"bold"} initial={{opacity: 0, y: 50}} animate={{opacity: 1, y: 0, transition: {delay: 0.5}}} >Voici votre nouveau téléphone.</Heading>
+                    <Text as={motion.p} initial={{opacity: 0, y: 50}} animate={{opacity: 1, y: 0, transition: {delay: 0.75}}}>Le meilleur en terme de performance, de design et d'innovation. Bienvenue dans le futur du smartphone.</Text>
+                </Box>
+            </Scroll>
         </ScrollControls>
     </Canvas>
   )
@@ -84,7 +94,7 @@ function Composition({...props}) {
         <directionalLight position={[0, 0, 5]} intensity={0.5} />
         <Environment preset="park" />
         {/*/!*<SpotLight position={[0, 0, 5]} distance={5} angle={0.15} attenuation={5} anglePower={50} color={0xff0000} />*!/*/}
-        <Smartphone ref={smartphone} position={[0, 0, 0]}/>
+        <Smartphone ref={smartphone} position={[0, 0, 0]} scale={[width*0.2,width*0.2,width*0.2]}/>
       </>
   );
 }
